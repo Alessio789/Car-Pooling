@@ -1,4 +1,4 @@
-package it.marconivr.domain;
+package it.marconivr.carpooling.domain;
 
 import java.sql.Time;
 import java.time.LocalTime;
