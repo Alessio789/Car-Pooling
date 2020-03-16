@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite
+        PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite3.2.dtd">
+
+<urlrewrite>
+    <rule>
+        <note>Segue le url delle risorse standard</note>
+        <condition type="request-uri" operator="equal">^/app/.*</condition>
+        <condition type="request-uri" operator="equal">^/pages/.*</condition>
+        <condition type="request-uri" operator="equal">^/images/.*</condition>
+        <condition type="request-uri" operator="equal">^/javascripts/.*</condition>
+        <condition type="request-uri" operator="equal">^/stylesheets/.*</condition>
+        <condition type="request-uri" operator="equal">^/favicon.*</condition>
+        <from>^/(.+)$</from>
+        <to type="forward" last="true">%{context-path}/$1</to>
+    </rule>
+    
+    <rule>
+        <note>Mantiene le url originali prima dei rewrite</note>    
+        <from>^/([^\?]*)(\?.*)?$</from>
+        <set type="request" name="realUri">$1</set>
+        <set type="request" name="realQueryString">$2</set>
+    </rule>
+       
+    <rule>
+        <note>Homepage</note>
+        <from>^/(\?.*)?$</from>
+        <to type="redirect" last="true">%{context-path}/dashboard$1</to>
+    </rule> 
+    
+    <rule>
+        <note>Dashboard_List</note>
+        <from>^/dashboard/list(\?.*)?$</from>
+        <to type="forward" last="true">%{context-path}/app/ToDoList/home$1</to>
+    </rule>  
+    
+     <rule>
+        <note>Login</note>
+        <from>^/login(\?.*)?$</from>
+        <to type="forward" last="true">%{context-path}/app/login/login$1</to>
+    </rule>
+    
+    <rule>
+        <note>Logout</note>
+        <from>^/logout(\?.*)?$</from>
+        <to type="redirect" last="true">%{context-path}/app/logout/logout$1</to>
+    </rule>
+    
+     <rule>
+        <note>Dashboard</note>
+        <from>^/dashboard(\?.*)?$</from>
+        <to type="forward" last="true">%{context-path}/app/dashboard/list$1</to>
+    </rule>
+    
+    <rule>
+        <note>ModifyTaskPage</note>
+        <from>^/modify(\?.*)?$</from>
+        <to type="forward" last="true">%{context-path}/app/ToDoList/modifyRequest$1</to>
+    </rule>
+       
+<!-- 
+    <rule>
+        <note>not found</note>
+        <condition type="request-uri" operator="notequal">^/app/.*</condition>
+        <condition type="request-uri" operator="notequal">^/pages/.*</condition>
+        <condition type="request-uri" operator="notequal">^/images/.*</condition>
+        <condition type="request-uri" operator="notequal">^/javascripts/.*</condition>
+        <condition type="request-uri" operator="notequal">^/stylesheets/.*</condition>
+        <condition type="request-uri" operator="notequal">^/favicon.*</condition>       
+        <from>^/(.+)$</from>
+        <to type="forward" last="true">%{context-path}/app/site/site/notFound?page=$1</to>
+    </rule>
+    
+    -->
+</urlrewrite>
+

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context docBase="ROOT" path="/" privileged="true" reloadable="true" crossContext="true">
+  <Logger className="org.apache.catalina.logger.FileLogger" prefix="todo_" suffix=".txt" timestamp="true"/>
+
+
+
+  <Resource name="jdbc/todo" auth="Container" type="javax.sql.DataSource" username="root" password="ricorda" 
+            driverClassName="com.mysql.jdbc.Driver" 
+            url="jdbc:mysql://localhost:3306/todo"
+            maxActive="40" maxIdle="10" maxWait="15" removeAbandonedTimeout="30" logAbandoned="true" removeAbandoned="true"      
+  /> 
+  
+  
+
+    
+
+</Context>
