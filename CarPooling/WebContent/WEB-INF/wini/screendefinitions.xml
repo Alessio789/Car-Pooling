@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen-definitions>
+
+  <!-- elenco template -->
+  <screen>
+    <screen-name>template</screen-name>
+    <parameter key="title" value="ToDO List |" direct="true" />
+     <parameter key="login" value="/pages/templates/login.jsp" />
+    <parameter key="standard" value="/pages/templates/standard.jsp" />
+    <parameter key="empty" value="/pages/templates/empty.jsp" />
+    
+  </screen>
+
+  <!-- elenco screen d'errore, obbligatori -->
+  <screen>
+    <screen-name>errore</screen-name>
+    <parameter key="title" value="ToDo List | Errore " direct="true" />
+    <parameter key="template" value="standard" />
+    <parameter key="content" option="99" value="/pages/frontend/error.jsp" />
+  </screen>
+
+ 
+ 
+  <screen>
+    <screen-name>ToDoList</screen-name>
+    <parameter key="title" value="Lista toDo" direct="true" />
+    <parameter key="template" value="standard" />
+    <parameter key="header"   value="/pages/frontend/header.jsp" />    
+    <parameter key="content"  value="/pages/frontend/home.jsp" />    
+    <parameter key="content" option="home"  value="/pages/frontend/home.jsp" />
+    <parameter key="content" option="logout"  value="/pages/frontend/login.jsp" />
+    <parameter key="content" option="dashboard_list"  value="/pages/frontend/dashboard_list.jsp" />
+    <parameter key="content" option="dashboard_addList"  value="/pages/frontend/dashboard_addList.jsp" />
+    <parameter key="content" option="modify_request"  value="/pages/frontend/modify_request.jsp" /> 
+    <parameter key="footer"   value="/pages/frontend/footer.jsp" />    
+    <parameter key="content" option="99" value="/pages/frontend/error.jsp" />
+  </screen>
+  
+  <screen> 
+    <screen-name>Login</screen-name>
+    <parameter key="title" value="Lista toDo" direct="true" />
+    <parameter key="template" value="login" />
+    <parameter key="content" option="login"  value="/pages/frontend/login.jsp" />
+    <parameter key="footer"   value="/pages/frontend/footer.jsp" />    
+    <parameter key="content" option="99" value="/pages/frontend/error.jsp" />
+  </screen>
+  
+   <screen>
+    <screen-name>empty</screen-name>
+    <parameter key="title" value="Lista toDo" direct="true" />
+    <parameter key="template" value="empty" />        
+    <parameter key="content" value="/pages/frontend/${page}.jsp" />        
+    <parameter key="content" option="99" value="/pages/frontend/error.jsp" />
+  </screen>
+  
+  
+  
+</screen-definitions>

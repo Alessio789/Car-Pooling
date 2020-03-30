@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>CarPooling</display-name>
+  
+  <context-param>
+    <param-name>conf</param-name>
+    <param-value>WEB-INF/wini/init.conf</param-value>
+  </context-param>
+  <context-param>
+    <param-name>log4j-init-file</param-name>
+    <param-value>/WEB-INF/wini/log4j.properties</param-value>
+  </context-param>
+  <context-param>
+    <param-name>cache-config</param-name>
+    <param-value>WEB-INF/wini/oscache.properties</param-value>
+  </context-param> 
+  
+  <filter>
+    <filter-name>UrlRewriteFilter</filter-name>
+    <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+    <init-param>
+      <param-name>confReloadCheckInterval</param-name>
+      <param-value>60</param-value>
+    </init-param>
+    <init-param>
+      <param-name>confPath</param-name>
+      <param-value>/WEB-INF/wini/urlrewrite.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>logLevel</param-name>
+      <param-value>DEBUG</param-value>
+    </init-param>
+    <init-param>
+      <param-name>statusPath</param-name>
+      <param-value>/status</param-value>
+    </init-param>
+    <init-param>
+      <param-name>statusEnabled</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>statusEnabledOnHosts</param-name>
+      <param-value>localhost</param-value>
+    </init-param>
+    <init-param>
+      <param-name>modRewriteConf</param-name>
+      <param-value>false</param-value>
+    </init-param>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>CharsetFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+    <filter-name>UrlRewriteFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+ 
+ 
+ 
+  
+  <servlet-mapping>
+    <url-pattern>/app/*</url-pattern>
+  </servlet-mapping>
+ 
+  
+</web-app>
