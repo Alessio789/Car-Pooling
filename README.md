@@ -1,4 +1,6 @@
 # Car-Pooling
+The project will be developed as a Web Application through the Java programming language, with the use of the Maven and Spring frameworks and JPA for accessing the database (the database engine used will be derby). The graphical interface will be created with HTML 5, CSS 3 and the Bootstrap 4 framework.
+
 
 ![](https://img.shields.io/badge/PROJECT%20TYPE-SCHOOL-yellow?style=for-the-badge)
 ![](https://img.shields.io/badge/LICENSE-UNLICENSE-brightgreen?style=for-the-badge)
@@ -12,11 +14,3 @@ The project involves the development of a Web platform that allows car pooling a
 ## Development
 
 The project will be developed as a Web Application through the Java programming language, with the use of the Maven and Spring frameworks and JPA for accessing the database (the database engine used will be derby). The graphical interface will be created with HTML 5, CSS 3 and the Bootstrap 4 framework.
-
-## ORM Diagram
-![](https://github.com/Alessio789/Car-Pooling/blob/master/docs/ORM%20diagram.png)
-
-
-## ER Diagram
-
-![](https://github.com/Alessio789/Car-Pooling/blob/master/docs/ER%20diagram.png)
