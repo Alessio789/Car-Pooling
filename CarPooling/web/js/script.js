@@ -15,10 +15,9 @@ var APP = {
     },
 
     init_showPassenger: function () {
-        $("#passenger").change(APP.showPassenger)
-    }
+        $("#passenger").change(APP.showPassenger);
+    },
 }
-
 
 $(document).ready(function () {
     APP.init_showDriver();

@@ -17,15 +17,26 @@ public class CarPoolingUserDao {
         public static EntityManager em = Dao.getEm();
 
     public static List<CarPoolingUser> findAll() {
-        TypedQuery<CarPoolingUser> typedQuery = em.createQuery("SELECT u FROM CarPoolingUser u", CarPoolingUser.class);
+        TypedQuery<CarPoolingUser> typedQuery = em.createQuery("SELECT u FROM "
+                + "CarPoolingUser u", CarPoolingUser.class);
         List<CarPoolingUser> userList = typedQuery.getResultList();
         return userList;
     }
 
     public static CarPoolingUser findById(Long id) {
-        TypedQuery<CarPoolingUser> typedQuery = em.createQuery("SELECT u FROM CarPoolingUser u WHERE u.id=:id", CarPoolingUser.class);
+        TypedQuery<CarPoolingUser> typedQuery = em.createQuery("SELECT u FROM "
+                + "CarPoolingUser u WHERE u.id=:id", CarPoolingUser.class);
         typedQuery.setParameter("id", id);
         CarPoolingUser user = typedQuery.getResultList().get(0);
+        return user;
+    }
+    
+    public static CarPoolingUser findByUsername(String username) {
+        TypedQuery<CarPoolingUser> typedQuery = em.createQuery("SELECT u FROM "
+                + "CarPoolingUser u WHERE u.username LIKE :username", 
+                CarPoolingUser.class);
+        typedQuery.setParameter("username", username);
+        CarPoolingUser user = typedQuery.getSingleResult();
         return user;
     }
 
