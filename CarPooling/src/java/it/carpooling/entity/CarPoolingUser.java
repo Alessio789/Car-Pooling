@@ -1,6 +1,5 @@
 package it.carpooling.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -23,7 +22,7 @@ import lombok.*;
 @DiscriminatorColumn
 @NoArgsConstructor  
 @AllArgsConstructor
-public abstract class CarPoolingUser implements Serializable {
+public abstract class CarPoolingUser {
  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +35,7 @@ public abstract class CarPoolingUser implements Serializable {
     
     @Column(nullable = false)
     @Getter @Setter
-    private String lastname;
+    private String lastName;
     
     @Column(nullable = false, unique = true)
     @Getter @Setter
@@ -57,9 +56,28 @@ public abstract class CarPoolingUser implements Serializable {
     
     @Column(nullable = false, unique = true)
     @Getter @Setter
+    private String username;
+    
+    @Column(nullable = false, unique = true)
+    @Getter @Setter
     private String PasswordHash;
     
     @Column(nullable = false, unique = true)
     @Getter @Setter
     private String salt;
+
+    public CarPoolingUser(String name, String lastName, String fiscalCode, Date birthDate, String phoneNumber, String email, String username, String PasswordHash, String salt) {
+        this.name = name;
+        this.lastName = lastName;
+        this.fiscalCode = fiscalCode;
+        this.birthDate = birthDate;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.username = username;
+        this.PasswordHash = PasswordHash;
+        this.salt = salt;
+    }
+    
+    
+    
 }

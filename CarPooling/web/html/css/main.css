@@ -183,6 +183,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   padding: 70px 130px 33px 70px;
 }
 
@@ -229,7 +230,6 @@ iframe {
   font-size: 15px;
   line-height: 1.5;
   color: #666666;
-
   display: block;
   width: 100%;
   background: #e6e6e6;

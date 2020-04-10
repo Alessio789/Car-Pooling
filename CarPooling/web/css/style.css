@@ -1,22 +1,22 @@
 @font-face {
     font-family: Poppins-Regular;
-    src: url('../html/fonts/poppins/Poppins-Regular.ttf'); 
-  }
-  
-  @font-face {
+    src: url('../html/fonts/poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
     font-family: Poppins-Bold;
-    src: url('../html/fonts/poppins/Poppins-Bold.ttf'); 
-  }
-  
-  @font-face {
+    src: url('../html/fonts/poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
     font-family: Poppins-Medium;
-    src: url('../html/fonts/poppins/Poppins-Medium.ttf'); 
-  }
-  
-  @font-face {
+    src: url('../html/fonts/poppins/Poppins-Medium.ttf');
+}
+
+@font-face {
     font-family: Montserrat-Bold;
-    src: url('../html/fonts/montserrat/Montserrat-Bold.ttf'); 
-  }
+    src: url('../html/fonts/montserrat/Montserrat-Bold.ttf');
+}
 
 .ctn {
     background-color: grey;
@@ -46,7 +46,7 @@ ul {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
 
 #background {
     opacity: 0.7
@@ -56,9 +56,24 @@ ul {
     font-size: 50px
 }
 
-.custom-radio .custom-control-input:checked~.custom-control-label::before,
-.custom-radio .custom-control-input:checked~.custom-control-label::after {
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before,
+.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
 
     background-color: #cc5a01;
     border-radius: 50%;
+}
+
+#car {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#driver-form {
+    display: none;
+}
+
+#passenger-form {
+    display: none;
 }

@@ -1,7 +1,7 @@
-Thu Apr 09 17:30:11 CEST 2020 : Server di rete Apache Derby: 10.11.1.2 - (1629631) avviato e pronto ad accettare connessioni sulla porta 1527
+Fri Apr 10 20:19:44 CEST 2020 : Server di rete Apache Derby: 10.11.1.2 - (1629631) avviato e pronto ad accettare connessioni sulla porta 1527
 ----------------------------------------------------------------
-Thu Apr 09 17:30:11 CEST 2020:
-Avvio della versione di Derby The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): istanza a816c00e-0171-5f90-063e-0000188fb25b
+Fri Apr 10 20:19:44 CEST 2020:
+Avvio della versione di Derby The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): istanza a816c00e-0171-6551-9da7-0000188fb25b
 sulla directory di database D:\Alessio\Scuola\2019-2020\INI\Laboratorio\Java\Car-Pooling\CarPooling\db\CarPooling con caricatore classi sun.misc.Launcher$AppClassLoader@266474c2 
 Caricato da file:/C:/Program%20Files/Java/jdk1.8.0_161/db/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -12,8 +12,3 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=D:\Alessio\Scuola\2019-2020\INI\Laboratorio\Java\Car-Pooling\CarPooling\db
 Programma di caricamento classe database avviato - derby.database.classpath=''
-----------------------------------------------------------------
-Thu Apr 09 17:42:41 CEST 2020: arresto in corso del motore di Derby
-----------------------------------------------------------------
-Thu Apr 09 17:42:41 CEST 2020:
-Arresto dell'istanza a816c00e-0171-5f90-063e-0000188fb25b nella directory del database D:\Alessio\Scuola\2019-2020\INI\Laboratorio\Java\Car-Pooling\CarPooling\db\CarPooling con il caricatore di classi sun.misc.Launcher$AppClassLoader@266474c2 
