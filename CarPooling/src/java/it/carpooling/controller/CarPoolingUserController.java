@@ -17,7 +17,6 @@ import javax.xml.bind.DatatypeConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -52,7 +51,7 @@ public class CarPoolingUserController {
         if (role.equals("driver")) {
             
             String numDrivingLicense = request.getParameter("numDrivingLicense");
-            Date deadline = new SimpleDateFormat("yyyy/MM/dd")
+            Date deadline = new SimpleDateFormat("yyyy-MM-dd")
                     .parse(request.getParameter("deadline"));
             
             Driver d = new Driver(numDrivingLicense, deadline, name, lastName, 
@@ -76,8 +75,7 @@ public class CarPoolingUserController {
     
     @RequestMapping(value = "/loggedin.htm", method = RequestMethod.POST,
             produces = "text/html;charset=UTF-8")
-    @ResponseBody
-    public String login(HttpServletRequest request) throws Exception {
+    public String login(HttpServletRequest request) {
         
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -93,16 +91,22 @@ public class CarPoolingUserController {
         hasher.putString(passwordSalt, Charsets.UTF_8);
         String sha256 = hasher.hash().toString();
         
+        Hasher hasher1 = Hashing.sha256().newHasher();
+        hasher1.putString("test"+ "pRqif0rdI/XXJ8YeQATySQ==", Charsets.UTF_8);
+        String sha2562 = hasher1.hash().toString();
+        
+        
         if(sha256.equals(passwordHash)) {
             
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
  
             return "Login successful";
-           
-        } else {
             
-            throw new Exception();
+            
+        } else {
+            return "Login failed";
         }
+        
     }
 }
