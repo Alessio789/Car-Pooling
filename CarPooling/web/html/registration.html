@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>CarPooling | Login</title>
+    <title>CarPooling | Sign Up</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="icon/logo_1_color.png" />
@@ -24,12 +24,7 @@
             crossorigin="anonymous"></script>
     <script src="html/vendor/select2/select2.min.js"></script>
     <script src="html/vendor/tilt/tilt.jquery.min.js"></script>
-    <script>
-        $('.js-tilt').tilt({
-            scale: 1.1
-        })
-    </script>
-    <script src="html/js/main.js"></script>
+
 </head>
 
 <body>
@@ -57,6 +52,17 @@
                     <span class="login100-form-title">
                         Sign Up
                     </span>
+
+                <div class="wrap-input100 validate-input" style="padding-left: 35px; padding-bottom: 20px" data-validate="role is required">
+                <div class="custom-control custom-radio" style="padding-bottom: 10px">
+                    <input type="radio" id="driver" name="role" class="custom-control-input">
+                    <label class="custom-control-label" for="driver">I am a driver</label>
+                </div>
+                <div class="custom-control custom-radio ">
+                    <input type="radio" id="passenger" name="role" class="custom-control-input">
+                    <label class="custom-control-label" for="passenger">I am a passenger</label>
+                </div>
+                </div>
 
                 <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                     <input class="input100" type="text" name="email" placeholder="Email">

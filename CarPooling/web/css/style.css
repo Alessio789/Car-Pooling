@@ -55,3 +55,10 @@ ul {
 #welcome {
     font-size: 50px
 }
+
+.custom-radio .custom-control-input:checked~.custom-control-label::before,
+.custom-radio .custom-control-input:checked~.custom-control-label::after {
+
+    background-color: #cc5a01;
+    border-radius: 50%;
+}
