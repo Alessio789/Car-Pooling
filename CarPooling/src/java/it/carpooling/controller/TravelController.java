@@ -111,13 +111,13 @@ public class TravelController {
         String departureCity = request.getParameter("departureCity");
         String arrivalCity = request.getParameter("arrivalCity");
         String dateString = request.getParameter("date");
-        Date date = new SimpleDateFormat("yyyy-MM-dd")
-                .parse(dateString);
+        String depTimeString = request.getParameter("hour");
+        Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm")
+                .parse(dateString + " " + depTimeString);
         double contribution = Double.parseDouble(
                 request.getParameter("contribution"));
         int travelTime = Integer.parseInt(request.getParameter("travelTime"));
         
-        String depTimeString = request.getParameter("hour");
         Date depTime = new SimpleDateFormat("H").parse(depTimeString);
         boolean luggage = false;
         
@@ -125,7 +125,7 @@ public class TravelController {
             luggage = true;
         } 
         
-        String additionalNotes = request.getParameter("additonalNotes");
+        String additionalNotes = request.getParameter("additionalNotes");
         
         HttpSession session = request.getSession(false);
         Driver driver = (Driver) CarPoolingUserDao.findByUsername((String) 
