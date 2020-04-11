@@ -1,5 +1,6 @@
 package it.carpooling.dao;
 
+import it.carpooling.entity.Driver;
 import it.carpooling.entity.Travel;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -33,6 +34,14 @@ public class TravelDao {
         TypedQuery<Travel> typedQuery = em.createQuery("SELECT t FROM Travel t "
                 + "WHERE t.arrivalCity = :arrivalCity", Travel.class);
         typedQuery.setParameter("arrivalCity", arrivalCity);
+        List<Travel> travelList = typedQuery.getResultList();
+        return travelList;
+    }
+    
+    public static List<Travel> findByDriver(Driver d) {
+        TypedQuery<Travel> typedQuery = em.createQuery("SELECT t FROM Travel t "
+                + "WHERE t.driver = :driver", Travel.class);
+        typedQuery.setParameter("driver", d);
         List<Travel> travelList = typedQuery.getResultList();
         return travelList;
     }

@@ -19,7 +19,6 @@ import lombok.*;
  * @author Alessio Trentin
  */
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 public class Travel {
     
@@ -54,10 +53,9 @@ public class Travel {
     @Getter @Setter
     private boolean prenotable = true;
     
-    @Temporal(TemporalType.TIME)
     @Column(nullable = false)
     @Getter @Setter
-    private Date travelTime;
+    private int travelTime;
     
     @Column(nullable = false)
     @Getter @Setter
@@ -72,4 +70,16 @@ public class Travel {
     @JoinColumn(nullable = false)
     @Getter @Setter
     private Driver driver;
+
+    public Travel(String departureCity, String arrivalCity, Date date, Date hours, double contribution, int travelTime, boolean luggage, String additionalNotes, Driver driver) {
+        this.departureCity = departureCity;
+        this.arrivalCity = arrivalCity;
+        this.date = date;
+        this.hours = hours;
+        this.contribution = contribution;
+        this.travelTime = travelTime;
+        this.luggage = luggage;
+        this.additionalNotes = additionalNotes;
+        this.driver = driver;
+    }
 }

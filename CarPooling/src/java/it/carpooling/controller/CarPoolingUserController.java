@@ -63,7 +63,7 @@ public class CarPoolingUserController {
             HttpSession session = request.getSession();
             session.setAttribute("username", d.getUsername());
             
-            return "redirect/cars.htm";
+            return "redirect:/cars.htm";
             
         } else {
             
@@ -101,10 +101,17 @@ public class CarPoolingUserController {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
  
-            return "Login successful";
-       
+            if (user instanceof Driver) {
+                
+                return "redirect:/mytravels.htm";
+                
+            } else {
+            
+                return "redirect:/bookings.htm";
+            }
             
         } else {
+            
             return "Login failed";
         }
         
