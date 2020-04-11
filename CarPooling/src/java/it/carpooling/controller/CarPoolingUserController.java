@@ -60,6 +60,11 @@ public class CarPoolingUserController {
 
             CarPoolingUserDao.insert(d);
             
+            HttpSession session = request.getSession();
+            session.setAttribute("username", d.getUsername());
+            
+            return "redirect/cars.htm";
+            
         } else {
             
             String numDocument = request.getParameter("numDocument");
@@ -68,9 +73,9 @@ public class CarPoolingUserController {
                     phoneNumber, email, username, sha256, salt, numDocument);
             
             CarPoolingUserDao.insert(p);
-        }
-        
-        return "Fatto";
+            
+            return "redirect:/login.htm";
+        }       
     }
     
     @RequestMapping(value = "/loggedin.htm", method = RequestMethod.POST,
@@ -91,18 +96,13 @@ public class CarPoolingUserController {
         hasher.putString(passwordSalt, Charsets.UTF_8);
         String sha256 = hasher.hash().toString();
         
-        Hasher hasher1 = Hashing.sha256().newHasher();
-        hasher1.putString("test"+ "pRqif0rdI/XXJ8YeQATySQ==", Charsets.UTF_8);
-        String sha2562 = hasher1.hash().toString();
-        
-        
         if(sha256.equals(passwordHash)) {
             
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
  
             return "Login successful";
-            
+       
             
         } else {
             return "Login failed";

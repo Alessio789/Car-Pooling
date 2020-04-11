@@ -28,6 +28,14 @@ public class TravelDao {
         Travel travel = typedQuery.getResultList().get(0);
         return travel;
     }
+    
+    public static List<Travel> findByArrivalCity(String arrivalCity) {
+        TypedQuery<Travel> typedQuery = em.createQuery("SELECT t FROM Travel t "
+                + "WHERE t.arrivalCity = :arrivalCity", Travel.class);
+        typedQuery.setParameter("arrivalCity", arrivalCity);
+        List<Travel> travelList = typedQuery.getResultList();
+        return travelList;
+    }
 
     public static boolean insert(Travel t) {
         em.getTransaction().begin();

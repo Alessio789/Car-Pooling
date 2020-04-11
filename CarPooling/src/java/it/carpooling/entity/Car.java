@@ -18,7 +18,6 @@ import lombok.*;
  */
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 public class Car {
     
     @Id
@@ -37,7 +36,7 @@ public class Car {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @Getter @Setter
-    private Date registrationDate;
+    private Date matriculationDate;
     
     @Column(nullable = false)
     @Getter @Setter
@@ -55,4 +54,14 @@ public class Car {
     @JoinColumn(nullable = false)
     @Getter @Setter
     private Driver driver;
+
+    public Car(String brand, String model, Date matriculationDate, int kmTraveled, String licensePlate, int numberSeats, Driver driver) {
+        this.brand = brand;
+        this.model = model;
+        this.matriculationDate = matriculationDate;
+        this.kmTraveled = kmTraveled;
+        this.licensePlate = licensePlate;
+        this.numberSeats = numberSeats;
+        this.driver = driver;
+    }
 }
