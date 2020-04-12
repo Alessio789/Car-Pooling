@@ -120,9 +120,11 @@ var APP = {
                         "<h5 class='card-title'>" + travel.departureCity + " - " + travel.arrivalCity + "</h5>" +
                         "<p class='card-text'> Date: " + travel.date + "<br> Travel Time: " + travel.travelTime + "</p><br>" +
                         "<p>" +
+                        "<div class='row'><div class='col'></div><div class='col p-b-10'>" +
                         "<button class='login100-form-btn' data-toggle=\"collapse\" href=\"#collapse\" aria-expanded=\"false\" aria-controls=\"collapse\">" +
                         "More Details" +
                         "</button>" +
+                        "</div><div class='col'></div></div>" +
                         "</p>" +
                         "<div class=\"collapse\" id=\"collapse\">" +
                         "<div class=\"card card-body\">" +
@@ -130,14 +132,16 @@ var APP = {
                         luggage + "<br>" +
                         additionalNotes +
                         "<span id='" + travel.id + "'> Booked Seats: 0"  +
+                        "<div class='row'><div class='col'></div><div class='col p-b-10'>" +
                         "<div class='container-login100-form-btn' id='container" + travel.id + "'> <button class='login100-form-btn' id='button" + travel.id + "'> Book </button> </div>" +
+                        "</div><div class='col'></div></div>" +
                         "</span>" +
                         "</div>" +
                         "</div>" +
                         "</div>" +
                         "</div>";
 
-
+                    $("#button" + travel.id).on("click", APP.ifAlreadyBooked);
                     APP.getBookingByTravelId(travel.id);
                 }
             }).fail(function () {

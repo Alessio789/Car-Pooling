@@ -16,7 +16,7 @@ var APP = {
 
     declineBooking : function (event) {
         var buttonId = event.target.id;
-        var s = buttonId.split("accept");
+        var s = buttonId.split("decline");
         var bookingId = s[1];
 
         $.post("/CarPooling/declinebooking.htm", {bookingId: bookingId},

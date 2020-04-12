@@ -80,7 +80,7 @@ public class BookingDao {
     
     public static List<Booking> findByDriver(Driver d) {
         TypedQuery<Booking> typedQuery = em.createQuery("SELECT b FROM Booking "
-                + "b INNER JOIN Travel t WHERE t.driver=:driver", 
+                + "b INNER JOIN Travel t ON b.travel = t WHERE t.driver=:driver", 
                 Booking.class);
         typedQuery.setParameter("driver", d);
         List<Booking> bookingList = typedQuery.getResultList();

@@ -13,8 +13,6 @@ import it.carpooling.entity.Booking;
 import it.carpooling.entity.Driver;
 import it.carpooling.entity.Passenger;
 import it.carpooling.entity.Travel;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
@@ -130,18 +128,13 @@ public class BookingController {
     @ResponseBody
     public String driverBooking(HttpServletRequest request) {
 
-        String username = (String) request.getSession(false)
-                .getAttribute("username");
+        String username = "teddyedo";//(String) request.getSession(false)
+                //.getAttribute("username");
         Driver driver = (Driver) CarPoolingUserDao
                 .findByUsername(username);
 
         List<Booking> bookingList = BookingDao.findByDriver(driver);
-        Collections.sort(bookingList, new Comparator<Booking>() {
-            @Override
-            public int compare(Booking b1, Booking b2) {
-                return -Boolean.compare(b1.getAccepted(), b2.getAccepted());
-            }
-        });
+       
         Gson g = new Gson();
 
         return g.toJson(bookingList);
