@@ -1,6 +1,7 @@
 package it.carpooling.dao;
 
 import it.carpooling.entity.Booking;
+import it.carpooling.entity.Driver;
 import it.carpooling.entity.Passenger;
 import it.carpooling.entity.Travel;
 import java.util.List;
@@ -76,7 +77,23 @@ public class BookingDao {
             return Optional.empty();
         }
     }
+    
+    public static List<Booking> findByDriver(Driver d) {
+        TypedQuery<Booking> typedQuery = em.createQuery("SELECT b FROM Booking "
+                + "b INNER JOIN Travel t WHERE t.driver=:driver", 
+                Booking.class);
+        typedQuery.setParameter("driver", d);
+        List<Booking> bookingList = typedQuery.getResultList();
+        return bookingList;
+    }
 
+    public static void update(Booking b) {
+        
+        Booking deleteBooking = BookingDao.findById(b.getId());
+        BookingDao.delete(deleteBooking);
+        BookingDao.insert(b);
+    }
+    
     public static boolean insert(Booking b) {
         em.getTransaction().begin();
         try {

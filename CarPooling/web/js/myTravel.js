@@ -8,7 +8,18 @@ var APP = {
 
                 var requestedSeats = bookings.length
 
-                document.getElementById(bookings[0].travel.id).innerHTML = "Requested Seats: " + requestedSeats;
+                APP.getNumberSeats(requestedSeats, bookings[0].travel.id);
+            });
+    },
+
+    getNumberSeats: function (requestedSeats, travelId) {
+        $.post("/CarPooling/cars.htm/carbytravel.htm", {travelId: travelId, requestedSeats: requestedSeats},
+            function (data) {
+                var s = data.split(" ");
+                var availableSeats = s[0];
+                var travelId = s[1];
+
+                document.getElementById(travelId).innerHTML = "Requested Seats: " + requestedSeats + "<br>Available Seats: " + availableSeats;
             });
     },
 
