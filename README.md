@@ -10,4 +10,4 @@ The project involves the development of a Web platform that allows car pooling a
 
 ## Development
 
-The project will be developed as a Web Application through the Java programming language, with the use of the Maven and Spring frameworks and JPA for accessing the database (the database engine used will be derby). The graphical interface will be created with HTML 5, CSS 3 and the Bootstrap 4 framework.
+The project will be developed as a Web Application through the Java programming language, with the use of Spring framework and JPA for accessing the database (the database engine used will be derby). The graphical interface will be created with HTML 5, CSS 3 and Bootstrap 4 framework.
