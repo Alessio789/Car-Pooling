@@ -107,7 +107,7 @@ public class CarPoolingUserController {
                 
             } else {
             
-                return "redirect:/bookings.htm";
+                return "redirect:/findtravel.htm";
             }
             
         } else {

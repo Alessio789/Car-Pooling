@@ -43,6 +43,24 @@ public class BookingDao {
         return bookingList;
     }
 
+    
+    public static List<Booking> acceptedByTravel(Travel travel) {
+        TypedQuery<Booking> typedQuery = em.createQuery("SELECT b FROM Booking "
+                + "b WHERE b.travel=:travel AND b.accepted = true", 
+                Booking.class);
+        typedQuery.setParameter("travel", travel);
+        List<Booking> bookingList = typedQuery.getResultList();
+        return bookingList;
+    }
+    
+    public static List<Booking> findByPassenger(Passenger passenger) {
+        TypedQuery<Booking> typedQuery = em.createQuery("SELECT b FROM Booking "
+                + "b WHERE b.passenger=:passenger", Booking.class);
+        typedQuery.setParameter("passenger", passenger);
+        List<Booking> bookingList = typedQuery.getResultList();
+        return bookingList;
+    }
+    
     public static Optional<Booking> findByTravelAndPassenger(Travel travel,
             Passenger passenger) {
         try {
