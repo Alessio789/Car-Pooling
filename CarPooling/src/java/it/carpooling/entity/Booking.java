@@ -9,7 +9,6 @@ import lombok.*;
  * @author Alessio Trentin
  */
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 public class Booking {
     
@@ -18,9 +17,9 @@ public class Booking {
     @Getter @Setter
     private long id;
 
-    @Column(nullable = false)
+    @Column
     @Getter @Setter
-    private boolean accepted;
+    private Boolean accepted = null;
     
     @ManyToOne(targetEntity = Passenger.class)
     @JoinColumn(nullable = false)
@@ -31,4 +30,9 @@ public class Booking {
     @JoinColumn(nullable = false)
     @Getter @Setter
     private Travel travel;
+
+    public Booking(Passenger passenger, Travel travel) {
+        this.passenger = passenger;
+        this.travel = travel;
+    }
 }

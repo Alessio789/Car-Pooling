@@ -2,8 +2,10 @@ package it.carpooling.controller;
 
 import it.carpooling.dao.CarDao;
 import it.carpooling.dao.CarPoolingUserDao;
+import it.carpooling.dao.TravelDao;
 import it.carpooling.entity.Car;
 import it.carpooling.entity.Driver;
+import it.carpooling.entity.Travel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
@@ -54,6 +57,25 @@ public class CarController {
         session.invalidate();
         
         return "redirect:/login.htm";
+    }
+    
+    @RequestMapping(value = "/carbytravel.htm", method = RequestMethod.POST,
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String carByTravel(HttpServletRequest request) {
+
+        int requestedSeats = Integer.parseInt(request.getParameter("requestedSeats"));
+        
+        long travelId = Long.parseLong(request.getParameter("travelId"));
+        Travel travel = TravelDao.findById(travelId);
+        
+        Driver driver = travel.getDriver();
+        Car car = CarDao.findByDriver(driver);
+        
+       String availableSeats = String.valueOf(car.getNumberSeats() 
+               - requestedSeats);
+
+        return availableSeats + " " + travelId;
     }
     
 }

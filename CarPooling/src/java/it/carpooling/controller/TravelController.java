@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class TravelController {
 
-    @RequestMapping(value = "bookings.htm", method = RequestMethod.GET,
+    @RequestMapping(value = "findtravel.htm", method = RequestMethod.GET,
             produces = "text/html;charset=UTF-8")
     public String toTravelPage(HttpServletRequest request) {
 

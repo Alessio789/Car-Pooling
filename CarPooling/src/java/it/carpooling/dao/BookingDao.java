@@ -1,21 +1,25 @@
 package it.carpooling.dao;
 
 import it.carpooling.entity.Booking;
+import it.carpooling.entity.Driver;
+import it.carpooling.entity.Passenger;
 import it.carpooling.entity.Travel;
 import java.util.List;
+import java.util.Optional;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 
 /**
  *
- * Booking DAO 
- * 
+ * Booking DAO
+ *
  * @author Alessio Trentin
  */
 public class BookingDao {
-    
-        public static EntityManager em = Dao.getEm();
+
+    public static EntityManager em = Dao.getEm();
 
     public static List<Booking> findAll() {
         TypedQuery<Booking> typedQuery = em.createQuery("SELECT b FROM Booking "
@@ -31,7 +35,7 @@ public class BookingDao {
         Booking booking = typedQuery.getResultList().get(0);
         return booking;
     }
-    
+
     public static List<Booking> findByTravel(Travel travel) {
         TypedQuery<Booking> typedQuery = em.createQuery("SELECT b FROM Booking "
                 + "b WHERE b.travel=:travel", Booking.class);
@@ -40,6 +44,56 @@ public class BookingDao {
         return bookingList;
     }
 
+    
+    public static List<Booking> acceptedByTravel(Travel travel) {
+        TypedQuery<Booking> typedQuery = em.createQuery("SELECT b FROM Booking "
+                + "b WHERE b.travel=:travel AND b.accepted = true", 
+                Booking.class);
+        typedQuery.setParameter("travel", travel);
+        List<Booking> bookingList = typedQuery.getResultList();
+        return bookingList;
+    }
+    
+    public static List<Booking> findByPassenger(Passenger passenger) {
+        TypedQuery<Booking> typedQuery = em.createQuery("SELECT b FROM Booking "
+                + "b WHERE b.passenger=:passenger", Booking.class);
+        typedQuery.setParameter("passenger", passenger);
+        List<Booking> bookingList = typedQuery.getResultList();
+        return bookingList;
+    }
+    
+    public static Optional<Booking> findByTravelAndPassenger(Travel travel,
+            Passenger passenger) {
+        try {
+            TypedQuery<Booking> typedQuery = em.createQuery("SELECT b FROM Booking "
+                    + "b WHERE b.travel = :travel AND b.passenger = :passenger",
+                    Booking.class);
+            typedQuery.setParameter("travel", travel);
+            typedQuery.setParameter("passenger", passenger);
+            Optional<Booking> bookingOp = Optional.of(typedQuery.getSingleResult());
+            return bookingOp;
+        }
+        catch(NoResultException e) {
+            return Optional.empty();
+        }
+    }
+    
+    public static List<Booking> findByDriver(Driver d) {
+        TypedQuery<Booking> typedQuery = em.createQuery("SELECT b FROM Booking "
+                + "b INNER JOIN Travel t WHERE t.driver=:driver", 
+                Booking.class);
+        typedQuery.setParameter("driver", d);
+        List<Booking> bookingList = typedQuery.getResultList();
+        return bookingList;
+    }
+
+    public static void update(Booking b) {
+        
+        Booking deleteBooking = BookingDao.findById(b.getId());
+        BookingDao.delete(deleteBooking);
+        BookingDao.insert(b);
+    }
+    
     public static boolean insert(Booking b) {
         em.getTransaction().begin();
         try {
@@ -55,16 +109,17 @@ public class BookingDao {
             return false;
         }
     }
-    
+
     public static boolean delete(Booking b) {
         em.getTransaction().begin();
         try {
             em.remove(b);
             em.getTransaction().commit();
             return true;
-        } catch (Exception e) {
+        }
+        catch(Exception e) {
             e.printStackTrace();
-            if (em.getTransaction().isActive()) {
+            if(em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
             return false;
