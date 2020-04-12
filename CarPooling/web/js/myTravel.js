@@ -8,11 +8,13 @@ var APP = {
 
                 var requestedSeats = bookings.length
 
-                document.getElementById(booking[0].travel.id).innerHTML = "Requested Seats: " + requestedSeats;
+                document.getElementById(bookings[0].travel.id).innerHTML = "Requested Seats: " + requestedSeats;
             });
     },
 
     showTravels: function () {
+
+        document.getElementById("travelsContainer").innerHTML = "";
 
         $.ajax({
 

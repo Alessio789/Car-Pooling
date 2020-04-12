@@ -7,8 +7,54 @@ var APP = {
 
                 var requestedSeats = bookings.length
 
-                document.getElementById(booking[0].travel.id).innerHTML = "Requested Seats: " + requestedSeats;
+                document.getElementById(bookings[0].travel.id).innerHTML = "Requested Seats: " + requestedSeats;
             });
+    },
+
+    book : function (event) {
+
+            var id = event.target.id;
+
+            var s = id.split('button');
+            var travelId = s[1];
+
+            $.post("/CarPooling/book.htm", {travelId: travelId},
+            function (data) {
+                var booking = JSON.parse(data);
+                var travelId = booking.travel.id;
+
+                document.getElementById("container" + travelId).innerHTML = "Booking made";
+
+            });
+    },
+
+    ifAlreadyBooked : function (travelId) {
+
+        $.post("/CarPooling/alreadybooked.htm", {travelId: travelId},
+            function (data) {
+
+                if (data === undefined) {
+
+                } else {
+                    var booking = JSON.parse(data);
+                    var container = document.getElementById("container" + booking.travel.id);
+                    switch (booking.accepted) {
+
+                        case true:
+                            container.innerHTML = "Your booking has been accepted";
+                            break;
+
+                        case false:
+                            container.innerHTML = "Your booking has been declined";
+                            break;
+
+                        default:
+                            container.innerHTML = "Your reservation has not yet been answered";
+                            break;
+                    }
+                }
+            });
+
     },
 
     showDriver: function () {
@@ -22,6 +68,9 @@ var APP = {
     },
 
     showTravels: function () {
+
+        document.getElementById("travelsContainer").innerHTML = "";
+
         var arrivalCity = $("#arrivalCity").val();
 
         $.post("/CarPooling/travels.htm", {arrivalCity: arrivalCity},
@@ -64,13 +113,15 @@ var APP = {
                         luggage + "<br>" +
                         additionalNotes +
                         "<span id='" + travel.id + "'> Booked Seats: 0 </span>" +
-                        "<div class='container-login100-form-btn'> <button class='login100-form-btn'> Book </button> </div>" +
+                        "<div class='container-login100-form-btn' id='container" + travel.id + "'> <button class='login100-form-btn' id='button" + travel.id + "'> Book </button> </div>" +
                         "</div>" +
                         "</div>" +
                         "</div>" +
                         "</div>";
 
+                    $("#button" + travel.id).on("click", APP.book);
                     APP.getBookingByTravelId(travel.id);
+                    APP.ifAlreadyBooked(travel.id);
                 }
             }).fail(function () {
             document.getElementById("travelsContainer").innerHTML = "Nobody organized a trip to that destination";

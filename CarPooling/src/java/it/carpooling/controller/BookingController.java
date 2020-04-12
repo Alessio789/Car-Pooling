@@ -7,14 +7,18 @@ package it.carpooling.controller;
 
 import com.google.gson.Gson;
 import it.carpooling.dao.BookingDao;
+import it.carpooling.dao.CarPoolingUserDao;
 import it.carpooling.dao.TravelDao;
 import it.carpooling.entity.Booking;
+import it.carpooling.entity.Passenger;
 import it.carpooling.entity.Travel;
 import java.util.List;
+import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
@@ -26,6 +30,7 @@ public class BookingController {
     
     @RequestMapping(value = "/bookingbytravel.htm", method = RequestMethod.POST,
             produces = "application/json;charset=UTF-8")
+    @ResponseBody
     public String getBookingByTravel(HttpServletRequest request) {
         
         long travelId = Long.parseLong(request.getParameter("travelId"));
@@ -39,4 +44,51 @@ public class BookingController {
         return g.toJson(bookingList);
     }
     
+    
+    @RequestMapping(value = "/book.htm", method = RequestMethod.POST,
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String book(HttpServletRequest request) {
+        
+        long travelId = Long.parseLong(request.getParameter("travelId"));     
+        Travel travel = TravelDao.findById(travelId);
+        
+        String username = (String) request.getSession(false)
+                .getAttribute("username");
+        Passenger passenger = (Passenger) CarPoolingUserDao
+                .findByUsername(username);
+        
+        Booking booking = new Booking(passenger, travel);
+        
+        BookingDao.insert(booking);
+        
+        Gson g = new Gson();
+        
+        return g.toJson(booking);
+    }
+    
+    @RequestMapping(value = "/alreadybooked.htm", method = RequestMethod.POST,
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String ifAlreadyBooked(HttpServletRequest request) {
+        
+        long travelId = Long.parseLong(request.getParameter("travelId"));     
+        Travel travel = TravelDao.findById(travelId);
+        
+        String username = (String) request.getSession(false)
+                .getAttribute("username");
+        Passenger passenger = (Passenger) CarPoolingUserDao
+                .findByUsername(username);
+        
+        Optional<Booking> bookingOp = BookingDao
+                .findByTravelAndPassenger(travel, passenger);
+        
+        if (bookingOp.isPresent()) {
+            
+            Gson g = new Gson();
+            
+            return g.toJson(bookingOp.get());
+        }
+        return null;
+    }
 }
