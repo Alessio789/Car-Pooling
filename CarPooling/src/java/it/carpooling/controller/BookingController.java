@@ -128,8 +128,8 @@ public class BookingController {
     @ResponseBody
     public String driverBooking(HttpServletRequest request) {
 
-        String username = "teddyedo";//(String) request.getSession(false)
-                //.getAttribute("username");
+        String username = (String) request.getSession(false)
+                .getAttribute("username");
         Driver driver = (Driver) CarPoolingUserDao
                 .findByUsername(username);
 

@@ -35,7 +35,7 @@ public class Travel {
     @Getter @Setter
     private String arrivalCity;
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @Getter @Setter
     private Date date;
