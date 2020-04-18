@@ -18,15 +18,44 @@ var APP = {
                 var availableSeats = s[0];
                 var travelId = s[1];
 
+
                 if (availableSeats == 0) {
                     var seats = "This travel cannot be booked, it is full.";
                 } else {
                     var seats = "<div class='container-login100-form-btn' id='container" + travelId + "'> <button class='login100-form-btn' id='button" + travelId + "'> Book </button> </div>";
                 }
+
                 document.getElementById(travelId).innerHTML = "Requested Seats: " + requestedSeats + "<br>Available Seats: " + availableSeats + "<br>" + seats;
                 $("#button" + travelId).on("click", APP.ifAlreadyBooked);
             });
     },
+
+    getBookingByTravelId_myBooking: function (travelId) {
+
+        $.post("/CarPooling/bookingbytravel.htm", {travelId: travelId},
+            function (data) {
+                var bookings = JSON.parse(data);
+
+                var requestedSeats = bookings.length
+
+                APP.getNumberSeats_myBooking(requestedSeats, bookings[0].travel.id);
+            });
+    },
+
+    getNumberSeats_myBooking: function (requestedSeats, travelId) {
+        $.post("/CarPooling/cars.htm/carbytravel.htm", {travelId: travelId, requestedSeats: requestedSeats},
+            function (data) {
+                var s = data.split(" ");
+                var availableSeats = s[0];
+                var travelId = s[1];
+
+                var seats = "<div class='container-login100-form-btn' id='feedback" + travelId + "'> <button class='login100-form-btn' id='feedbackButton" + travelId + "'> Add Feedback </button> </div>";
+
+                document.getElementById(travelId).innerHTML = "Requested Seats: " + requestedSeats + "<br>Available Seats: " + availableSeats + "<br>" + seats;
+                $("#button" + travelId).on("click", APP.ifAlreadyBooked);
+            });
+    },
+
 
     book: function (travelId) {
 
@@ -50,7 +79,7 @@ var APP = {
             function (data) {
 
                 if (data.length < 5) {
-                     APP.book(data);
+                    APP.book(data);
 
                 } else {
                     var booking = JSON.parse(data);
@@ -58,11 +87,11 @@ var APP = {
                     switch (booking.accepted) {
 
                         case true:
-                            container.innerHTML = "Your booking has been accepted";
+                            container.innerHTML = "Your booking has already been accepted";
                             break;
 
                         case false:
-                            container.innerHTML = "Your booking has been declined";
+                            container.innerHTML = "Your booking has already been declined";
                             break;
 
                         default:
@@ -131,9 +160,9 @@ var APP = {
                         "Contribution requested: " + travel.contribution + "<br>" +
                         luggage + "<br>" +
                         additionalNotes +
-                        "<span id='" + travel.id + "'> Booked Seats: 0"  +
+                        "<span id='" + travel.id + "'> Booked Seats: 0" +
                         "<div class='row'><div class='col'></div><div class='col p-b-10'>" +
-                        "<div class='container-login100-form-btn' id='container" + travel.id + "'> <button class='login100-form-btn' id='button" + travel.id + "'> Book </button> </div>" +
+                        "<div class='container-login100-form-btn' id='container" + travel.id + "'></div>" +
                         "</div><div class='col'></div></div>" +
                         "</span>" +
                         "</div>" +
@@ -219,7 +248,7 @@ var APP = {
                         "</div>" +
                         "</div>";
 
-                    APP.getBookingByTravelId(travel.id);
+                    APP.getBookingByTravelId_myBooking(travel.id);
                 }
             },
             error: function () {
