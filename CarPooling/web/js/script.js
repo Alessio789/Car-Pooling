@@ -162,7 +162,7 @@ var APP = {
                         additionalNotes +
                         "<span id='" + travel.id + "'> Booked Seats: 0" +
                         "<div class='row'><div class='col'></div><div class='col p-b-10'>" +
-                        "<div class='container-login100-form-btn' id='container" + travel.id + "'></div>" +
+                        "<div class='container-login100-form-btn' id='container" + travel.id + "'><button class='login100-form-btn' id='button" + travel.id + "'> Book </button> </div>" +
                         "</div><div class='col'></div></div>" +
                         "</span>" +
                         "</div>" +
