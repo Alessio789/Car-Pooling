@@ -8,7 +8,7 @@
 
 ##  Description
 
-The project involves the development of a Web platform that allows car pooling among those subscribed to the platform. Users can register as drivers or passengers. Drivers register their car (one only) and make themselves available for a ride to registered users as passengers. Users registered as drivers cannot play the passenger role (and vice versa). The driver enters the data of future journeys that he intends to make on the platform. The passenger can search if some driver offers a trip that corresponds to his requests (also by consulting the feedback that other passengers have issued on that driver), if he finds it he can book the trip (if the latter is still bookable, it depends on the number of places that the driver has in his car). Upon receiving the booking request, the driver can accept it based on the feedback that other drivers have released on that passenger. If the driver accepts the reservation, the passenger will receive a reminder email.
+The project involves the development of a Web platform that allows car pooling among those subscribed to the platform.
 
 ## Development
 
