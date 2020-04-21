@@ -3,6 +3,8 @@
 ![](https://img.shields.io/badge/LICENSE-UNLICENSE-brightgreen?style=for-the-badge)
 ![](https://img.shields.io/badge/IDE-NetBeans-lightgray?style=for-the-badge&logo=apache%20netbeans%20ide&logoColor=white)
 ![](https://img.shields.io/badge/language-Java-lightblue?style=for-the-badge&logo=java&logoColor=red)
+![](https://img.shields.io/badge/LANGUAGE-JAVASCRIPT-yellow?style=for-the-badge&logo=javascript)
+![](https://img.shields.io/badge/EDITOR-WEB%20STORM-lightgrey?style=for-the-badge&logo=webstorm)
 
 ##  Description
 
